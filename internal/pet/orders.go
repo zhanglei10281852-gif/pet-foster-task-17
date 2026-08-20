@@ -22,7 +22,6 @@ type CreateOrderInput struct {
 }
 
 func (s *Service) CreateOrder(ctx context.Context, principal Principal, input CreateOrderInput) (FosterOrder, error) {
-	ctx = s.store.detachedOrderContext(ctx)
 	if principal.UserID == 0 {
 		return FosterOrder{}, ErrUnauthenticated
 	}

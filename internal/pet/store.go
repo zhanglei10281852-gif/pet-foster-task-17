@@ -61,13 +61,6 @@ func Open(ctx context.Context, path string) (*Store, error) {
 func (s *Store) Close() error                   { return s.db.Close() }
 func (s *Store) Ping(ctx context.Context) error { return s.db.PingContext(ctx) }
 
-func (s *Store) detachedOrderContext(ctx context.Context) context.Context {
-	if ctx == nil {
-		return context.Background()
-	}
-	return context.Background()
-}
-
 func (s *Store) migrate(ctx context.Context) error {
 	statements := []string{
 		`CREATE TABLE IF NOT EXISTS pet_schema_versions (version INTEGER PRIMARY KEY, applied_at TEXT NOT NULL)`,
